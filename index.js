@@ -79,6 +79,21 @@ function computeScore() {
     return {sum, scoreArray};
 }
 
+function printMedian() {
+    scoreArray.sort((a, b) => {
+        return a - b;
+    })
+    var string = "全班总分中位数：";
+    if (scoreArray.length % 2 === 0) {
+        var i = scoreArray.length / 2 - 1;
+        string += (scoreArray[i] + scoreArray[i + 1]) / 2;
+    } else {
+        var i = (scoreArray.length - 1) / 2;
+        string += scoreArray[i];
+    }
+    console.log(string);
+}
+
 for(;answer !== "3";){
     if(answer === "1"){
         var stu = addStudent();
@@ -90,18 +105,7 @@ for(;answer !== "3";){
         printResArray(res);
         var {sum, scoreArray} = computeScore();
         console.log("全班总分平均数："+ sum/result.length);
-        scoreArray.sort((a,b) =>{
-            return a - b;
-        })
-        var string = "全班总分中位数：";
-        if(scoreArray.length % 2 === 0){
-            var i = scoreArray.length/2 -1 ;
-            string += (scoreArray[i] + scoreArray[i+1])/2;
-        }else{
-            var i = (scoreArray.length - 1) / 2;
-            string += scoreArray[i];
-        }
-        console.log(string);
+        printMedian();
     }
     answer = printOption();
 }
